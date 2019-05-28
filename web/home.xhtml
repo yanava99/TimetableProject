@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Timetable - home</title>
+        <link rel="stylesheet" href="main.css"/>
+    </h:head>
+    <h:body>
+        #{homeBean.init()}
+        You are authorized as: #{homeBean.getCurrentStudentInitials()}
+        <br/>
+        Your study year: #{homeBean.getCurrentStudentGroupYear()}
+        <br/>
+        Your group number: #{homeBean.getCurrentStudentGroupNumber()}
+        <br/><br/>
+        <h:form>
+            <p:growl id="growl" showDetail="true" sticky="false" life="5000"/>
+            <p:commandButton id="passwordBtn" value="Change Password" type="button" />
+            <p:overlayPanel id="passwordPanel" for="passwordBtn" hideEffect="fade">
+                <p:outputLabel value="New password: "/>
+                <p:password value="#{homeBean.newPassword}" required="true"/>
+                <br/>
+                <h:commandButton value="Change" action="#{homeBean.changePassword()}"/>
+            </p:overlayPanel>
+        </h:form>
+        <br/>
+        <p:commandButton id="groupBtn" value="Students in your group" type="button" />
+        <p:overlayPanel id="groupPanel" for="groupBtn" hideEffect="fade" dynamic="true" style="width:600px">
+            <p:dataTable var="student" value="#{homeBean.getStudentsInTheSameGroup()}" rows="5" paginator="true">
+                <p:column headerText="Initials">
+                    <h:outputText value="#{student.initials}" />
+                </p:column>
+
+                <p:column headerText="email">
+                    <h:outputText value="#{student.email}" />
+                </p:column>
+            </p:dataTable>
+        </p:overlayPanel>
+        <br/><br/>
+        
+        <h:form id="formMonday">
+            <p:dataTable id="mondayTable" var="class" value="#{homeBean.mondayList}">
+                <f:facet name="header">
+                    Monday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        
+        <h:form id="formTuesday">
+            <p:dataTable id="tuesdayTable" var="class" value="#{homeBean.tuesdayList}">
+                <f:facet name="header">
+                    Tuesday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>            
+        </h:form>
+        
+        <h:form id="formWednesday">
+            <p:dataTable id="wednesdayTable" var="class" value="#{homeBean.wednesdayList}">
+                <f:facet name="header">
+                    Wednesday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>            
+        </h:form>
+        
+        <h:form id="formThursday">
+            <p:dataTable id="thursdayTable" var="class" value="#{homeBean.thursdayList}">
+                <f:facet name="header">
+                    Thursday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>            
+        </h:form>
+
+        <h:form id="formFriday">
+            <p:dataTable id="fridayTable" var="class" value="#{homeBean.fridayList}">
+                <f:facet name="header">
+                    Friday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>            
+        </h:form>
+        
+        <h:form id="formSaturday">
+            <p:dataTable id="saturdayTable" var="class" value="#{homeBean.saturdayList}">
+                <f:facet name="header">
+                    Saturday
+                </f:facet>
+                <p:column headerText="time">
+                    <h:outputText value="#{class.timeOfClass}" />
+                </p:column>
+                <p:column headerText="subject">
+                    <h:outputText value="#{class.subject}" />
+                </p:column>
+                <p:column headerText="teacher">
+                    <h:outputText value="#{class.teacher}" />
+                </p:column>
+                <p:column headerText="room">
+                    <h:outputText value="#{class.room}" />
+                </p:column>
+            </p:dataTable>            
+        </h:form>
+        
+    </h:body>
+</html>
+
