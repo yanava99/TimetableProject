@@ -30,7 +30,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Classes.findByWeekday", query = "SELECT c FROM Classes c WHERE c.weekday = :weekday")
     , @NamedQuery(name = "Classes.findByTimeOfClass", query = "SELECT c FROM Classes c WHERE c.timeOfClass = :timeOfClass")
     , @NamedQuery(name = "Classes.findByRoom", query = "SELECT c FROM Classes c WHERE c.room = :room")
-    , @NamedQuery(name = "Classes.findByGroupAndWeekday", query = "SELECT c FROM Classes c WHERE c.groupInClasses = :groupInClasses AND c.weekday = :weekday")})
+    , @NamedQuery(name = "Classes.findByGroupAndWeekday", query = "SELECT c FROM Classes c WHERE c.groupInClasses = :groupInClasses AND c.weekday = :weekday")
+    , @NamedQuery(name = "Classes.findByAllButID", query = "SELECT c FROM Classes c WHERE c.subject = :subject AND c.teacher = :teacher AND c.weekday = :weekday AND c.timeOfClass = :timeOfClass AND c.room = :room AND c.groupInClasses = :groupInClasses")
+    , @NamedQuery(name = "Classes.findByGroupWeekdayAndTimeOfClass", query = "SELECT c FROM Classes c WHERE c.weekday = :weekday AND c.timeOfClass = :timeOfClass AND c.groupInClasses = :groupInClasses")})
 public class Classes implements Serializable, Comparable {
 
     private static final long serialVersionUID = 1L;

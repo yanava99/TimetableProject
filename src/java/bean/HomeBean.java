@@ -35,7 +35,16 @@ public class HomeBean implements Serializable {
     
     private List<Students> studentsInGroup;
     
+    private String currPassword;
     private String newPassword;
+
+    public String getCurrPassword() {
+        return currPassword;
+    }
+
+    public void setCurrPassword(String currPassword) {
+        this.currPassword = currPassword;
+    }
 
     public String getNewPassword() {
         return newPassword;
@@ -69,6 +78,14 @@ public class HomeBean implements Serializable {
         return currStudent.getInitials();
     }
     
+    public String getCurrentStudentID() {
+        return currStudent.getIdSTUDENTS();
+    }
+    
+    public String getCurrentStudentEmail() {
+        return currStudent.getEmail();
+    }
+    
     public int getCurrentStudentGroupNumber() {
         return currStudent.getGroupInStudents().getNumber();
     }
@@ -82,18 +99,19 @@ public class HomeBean implements Serializable {
     }
     
     public void changePassword() {
-        if(studentDAO.changePassword(newPassword, currStudent.getIdSTUDENTS()))
+        if(studentDAO.verify(currStudent.getIdSTUDENTS(), currPassword))
         {
+            studentDAO.changePassword(newPassword, currStudent.getIdSTUDENTS());
             RequestContext.getCurrentInstance().update("growl");
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Success!","Password was successfully changed."));
             currStudent.setPassword(newPassword);
-        }
+    }
         else
         {
             RequestContext.getCurrentInstance().update("growl");
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error!","Password wasn't changed."));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error!","Previous password isn't correct."));
         }
     }
 
@@ -120,6 +138,6 @@ public class HomeBean implements Serializable {
     public List<Classes> getSaturdayList() {
         return saturdayList;
     }
-    
+
     public HomeBean() {}
 }

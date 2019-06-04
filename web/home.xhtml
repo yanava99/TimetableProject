@@ -7,160 +7,169 @@
     <h:head>
         <title>Timetable - home</title>
         <link rel="stylesheet" href="main.css"/>
+        #{homeBean.init()}
     </h:head>
     <h:body>
-        #{homeBean.init()}
-        You are authorized as: #{homeBean.getCurrentStudentInitials()}
-        <br/>
-        Your study year: #{homeBean.getCurrentStudentGroupYear()}
-        <br/>
-        Your group number: #{homeBean.getCurrentStudentGroupNumber()}
-        <br/><br/>
-        <h:form>
-            <p:growl id="growl" showDetail="true" sticky="false" life="5000"/>
-            <p:commandButton id="passwordBtn" value="Change Password" type="button" />
-            <p:overlayPanel id="passwordPanel" for="passwordBtn" hideEffect="fade">
-                <p:outputLabel value="New password: "/>
-                <p:password value="#{homeBean.newPassword}" required="true"/>
-                <br/>
-                <h:commandButton value="Change" action="#{homeBean.changePassword()}"/>
-            </p:overlayPanel>
-        </h:form>
-        <br/>
-        <p:commandButton id="groupBtn" value="Students in your group" type="button" />
-        <p:overlayPanel id="groupPanel" for="groupBtn" hideEffect="fade" dynamic="true" style="width:600px">
-            <p:dataTable var="student" value="#{homeBean.getStudentsInTheSameGroup()}" rows="5" paginator="true">
-                <p:column headerText="Initials">
-                    <h:outputText value="#{student.initials}" />
-                </p:column>
+        <h3 style="margin-top:0">
+            You are authorized as: #{homeBean.getCurrentStudentInitials()}
+            <br/>
+            #{homeBean.getCurrentStudentGroupYear()} year, group #{homeBean.getCurrentStudentGroupNumber()}
+            <br/><br/>
+        </h3>
+        
+        
+        <h:form id="mainForm">
+     
+            <p:growl id="msgs" showDetail="true" />
+            
+            <p:tabView>
+                
+                <p:tab title="Timetable">
+                    <h:form id="formTimetable">
+                        <p:accordionPanel activeIndex="null">
+                            <p:tab title="Monday">
+                                    <p:dataTable id="mondayTable" var="class" value="#{homeBean.mondayList}">
+                                        <p:column headerText="time">
+                                            <h:outputText value="#{class.timeOfClass}" />
+                                        </p:column>
+                                        <p:column headerText="subject">
+                                            <h:outputText value="#{class.subject}" />
+                                        </p:column>
+                                        <p:column headerText="teacher">
+                                            <h:outputText value="#{class.teacher}" />
+                                        </p:column>
+                                        <p:column headerText="room">
+                                            <h:outputText value="#{class.room}" />
+                                        </p:column>
+                                    </p:dataTable>
+                            </p:tab>
+                            <p:tab title="Tuesday">
+                                <p:dataTable id="tuesdayTable" var="class" value="#{homeBean.tuesdayList}">
+                                    <p:column headerText="time">
+                                        <h:outputText value="#{class.timeOfClass}" />
+                                    </p:column>
+                                    <p:column headerText="subject">
+                                        <h:outputText value="#{class.subject}" />
+                                    </p:column>
+                                    <p:column headerText="teacher">
+                                        <h:outputText value="#{class.teacher}" />
+                                    </p:column>
+                                    <p:column headerText="room">
+                                        <h:outputText value="#{class.room}" />
+                                    </p:column>
+                                </p:dataTable>    
+                            </p:tab>
+                            <p:tab title="Wednesday">
+                                <p:dataTable id="wednesdayTable" var="class" value="#{homeBean.wednesdayList}">
+                                    <p:column headerText="time">
+                                        <h:outputText value="#{class.timeOfClass}" />
+                                    </p:column>
+                                    <p:column headerText="subject">
+                                        <h:outputText value="#{class.subject}" />
+                                    </p:column>
+                                    <p:column headerText="teacher">
+                                        <h:outputText value="#{class.teacher}" />
+                                    </p:column>
+                                    <p:column headerText="room">
+                                        <h:outputText value="#{class.room}" />
+                                    </p:column>
+                                </p:dataTable>      
+                            </p:tab>
+                            <p:tab title="Thursday">
+                                <p:dataTable id="thursdayTable" var="class" value="#{homeBean.thursdayList}">
+                                    <p:column headerText="time">
+                                        <h:outputText value="#{class.timeOfClass}" />
+                                    </p:column>
+                                    <p:column headerText="subject">
+                                        <h:outputText value="#{class.subject}" />
+                                    </p:column>
+                                    <p:column headerText="teacher">
+                                        <h:outputText value="#{class.teacher}" />
+                                    </p:column>
+                                    <p:column headerText="room">
+                                        <h:outputText value="#{class.room}" />
+                                    </p:column>
+                                </p:dataTable>  
+                            </p:tab>
+                            <p:tab title="Friday">
+                                <p:dataTable id="fridayTable" var="class" value="#{homeBean.fridayList}">
+                                    <p:column headerText="time">
+                                        <h:outputText value="#{class.timeOfClass}" />
+                                    </p:column>
+                                    <p:column headerText="subject">
+                                        <h:outputText value="#{class.subject}" />
+                                    </p:column>
+                                    <p:column headerText="teacher">
+                                        <h:outputText value="#{class.teacher}" />
+                                    </p:column>
+                                    <p:column headerText="room">
+                                        <h:outputText value="#{class.room}" />
+                                    </p:column>
+                                </p:dataTable>  
+                            </p:tab>
+                            <p:tab title="Saturday">
+                                <p:dataTable id="saturdayTable" var="class" value="#{homeBean.saturdayList}">
+                                    <p:column headerText="time">
+                                        <h:outputText value="#{class.timeOfClass}" />
+                                    </p:column>
+                                    <p:column headerText="subject">
+                                        <h:outputText value="#{class.subject}" />
+                                    </p:column>
+                                    <p:column headerText="teacher">
+                                        <h:outputText value="#{class.teacher}" />
+                                    </p:column>
+                                    <p:column headerText="room">
+                                        <h:outputText value="#{class.room}" />
+                                    </p:column>
+                                </p:dataTable>     
+                            </p:tab>
+                        </p:accordionPanel>
+                    </h:form>
+                </p:tab>
 
-                <p:column headerText="email">
-                    <h:outputText value="#{student.email}" />
-                </p:column>
-            </p:dataTable>
-        </p:overlayPanel>
-        <br/><br/>
-        
-        <h:form id="formMonday">
-            <p:dataTable id="mondayTable" var="class" value="#{homeBean.mondayList}">
-                <f:facet name="header">
-                    Monday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>
-        </h:form>
-        
-        <h:form id="formTuesday">
-            <p:dataTable id="tuesdayTable" var="class" value="#{homeBean.tuesdayList}">
-                <f:facet name="header">
-                    Tuesday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>            
-        </h:form>
-        
-        <h:form id="formWednesday">
-            <p:dataTable id="wednesdayTable" var="class" value="#{homeBean.wednesdayList}">
-                <f:facet name="header">
-                    Wednesday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>            
-        </h:form>
-        
-        <h:form id="formThursday">
-            <p:dataTable id="thursdayTable" var="class" value="#{homeBean.thursdayList}">
-                <f:facet name="header">
-                    Thursday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>            
-        </h:form>
+                <p:tab title="Group info">
+                    <h3 style="margin-top:0">#{homeBean.getCurrentStudentGroupYear()} year, group #{homeBean.getCurrentStudentGroupNumber()}</h3>
+                    <p:dataTable var="student" value="#{homeBean.getStudentsInTheSameGroup()}">
+                        <p:column headerText="Initials">
+                            <h:outputText value="#{student.initials}" />
+                        </p:column>
+                        <p:column headerText="email">
+                            <h:outputText value="#{student.email}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+                
+                <p:tab title="Personal info">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <h:outputLabel value="Your initials:"/>
+                        <h:outputLabel value="#{homeBean.getCurrentStudentInitials()}"/>
+                        <h:outputLabel value="Your login:"/>
+                        <h:outputLabel value="#{homeBean.getCurrentStudentID()}"/>
+                        <h:outputLabel value="Your email:"/>
+                        <h:outputLabel value="#{homeBean.getCurrentStudentEmail()}"/>
+                        <h:outputLabel value="Your year:"/>
+                        <h:outputLabel value="#{homeBean.getCurrentStudentGroupYear()}"/>
+                        <h:outputLabel value="Your group number:"/>
+                        <h:outputLabel value="#{homeBean.getCurrentStudentGroupNumber()}"/>
+                    </h:panelGrid>
+                    <p:fieldset legend="Change password" toggleable="true" collapsed="true" toggleSpeed="500">
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="pwd0" value="Previous password:" />
+                                <p:password id="pwd0" value="#{homeBean.currPassword}" required="true" />
 
-        <h:form id="formFriday">
-            <p:dataTable id="fridayTable" var="class" value="#{homeBean.fridayList}">
-                <f:facet name="header">
-                    Friday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>            
+                                <h:outputLabel for="pwd1" value="New password:" />
+                                <p:password id="pwd1" value="#{homeBean.newPassword}" match="pwd2" label="New password 1" required="true" />
+
+                                <h:outputLabel for="pwd2" value="Repeat new password:" />
+                                <p:password id="pwd2" value="#{homeBean.newPassword}" label="New password 2" required="true" />
+
+                                <h:commandButton value="Change" action="#{homeBean.changePassword()}"/>
+                            </h:panelGrid>
+                        </p:fieldset>
+                </p:tab>
+            </p:tabView>
         </h:form>
-        
-        <h:form id="formSaturday">
-            <p:dataTable id="saturdayTable" var="class" value="#{homeBean.saturdayList}">
-                <f:facet name="header">
-                    Saturday
-                </f:facet>
-                <p:column headerText="time">
-                    <h:outputText value="#{class.timeOfClass}" />
-                </p:column>
-                <p:column headerText="subject">
-                    <h:outputText value="#{class.subject}" />
-                </p:column>
-                <p:column headerText="teacher">
-                    <h:outputText value="#{class.teacher}" />
-                </p:column>
-                <p:column headerText="room">
-                    <h:outputText value="#{class.room}" />
-                </p:column>
-            </p:dataTable>            
-        </h:form>
-        
+                
     </h:body>
 </html>
 

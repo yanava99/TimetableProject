@@ -10,6 +10,8 @@ import org.primefaces.context.RequestContext;
 
 import dao.StudentDAO;
 import entity.Students;
+import dao.AdminDAO;
+import entity.Admins;
 
 /**
  *
@@ -24,6 +26,8 @@ public class LoginBean implements Serializable {
     
     @EJB
     private StudentDAO studentDAO;
+    @EJB
+    private AdminDAO adminDAO;
     
     
     public String verify()
@@ -35,6 +39,16 @@ public class LoginBean implements Serializable {
             context.getExternalContext().getSessionMap().put("currStudent", student);
             return "home.xhtml";
         }
+        
+        if(adminDAO.verify(id, password))
+        {
+            Admins admin = adminDAO.createAdminsObject(id);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().put("currAdmin", admin);
+            return "adminHome.xhtml";
+        }
+
+       
         RequestContext.getCurrentInstance().update("growl");
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","Invalid input, try again"));

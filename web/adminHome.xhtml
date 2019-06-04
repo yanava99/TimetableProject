@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Timetable - admin home</title>
+        <link rel="stylesheet" href="main.css"/>
+    </h:head>
+    <h:body>
+        #{adminHomeBean.init()}
+        
+        <h3 style="margin-top:0">
+            You are authorized as:        #{adminHomeBean.getCurrentAdminLogin()}       (posess admin privileges)
+        </h3>
+        <br/><br/>
+        <p:panel id="addClass" header="Add Class" toggleable="true" collapsed="true" closable="false" toggleSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+  
+         <h:form>
+            <p:growl id="growlAdmin" showDetail="true" sticky="false" life="5000"/>
+
+            <h:panelGrid columns="2" cellpadding="5" >
+
+                <p:outputLabel value="Subject:" for="acSubject" />
+                <p:inputText id="acSubject" value="#{adminHomeBean.newClassesSubject}" />
+
+                <p:outputLabel value="Teacher:" for="acTeacher" />
+                <p:inputText id="acTeacher" value="#{adminHomeBean.newClassesTeacher}" />
+
+                <p:outputLabel value="Weekday:" for="acWeekday" />
+                <p:selectOneMenu id="acWeekday" value="#{adminHomeBean.newClassesWeekday}"  required="true">
+                    <f:selectItem itemLabel="monday" itemValue="monday" />
+                    <f:selectItem itemLabel="tuesday" itemValue="tuesday" />
+                    <f:selectItem itemLabel="wednesday" itemValue="wednesday" />
+                    <f:selectItem itemLabel="thursday" itemValue="thursday" />
+                    <f:selectItem itemLabel="friday" itemValue="friday" />
+                    <f:selectItem itemLabel="saturday" itemValue="saturday" />
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Time:" for="acTime" />
+                <p:inputText id="acTime" value="#{adminHomeBean.newClassesTimeOfClass}"  required="true"/>
+
+                <p:outputLabel value="Year of group:" for="acYear" />
+                <p:inputText id="acYear" value="#{adminHomeBean.newClassesGroupYear}"  required="true"/>
+
+                <p:outputLabel value="Number of group:" for="acNumber" />
+                <p:inputText id="acNumber" value="#{adminHomeBean.newClassesGroupNumber}"  required="true"/>
+
+                <p:outputLabel value="Room:" for="acRoom" />
+                <p:inputText id="acRoom" value="#{adminHomeBean.newClassesRoom}" />
+
+            </h:panelGrid>
+
+            <p:commandButton value="Add class" update="growlAdmin" action="#{adminHomeBean.createClass()}" />
+
+        </h:form>
+ 
+    </p:panel>
+        
+        
+        <p:panel id="addStudent" header="Add Student" toggleable="true" collapsed="true" closable="false" toggleSpeed="500" widgetVar="panel1" style="margin-bottom:20px">
+  
+         <h:form>
+            <p:growl id="growlAdmin" showDetail="true" sticky="false" life="5000"/>
+
+            <h:panelGrid columns="2" cellpadding="5" >
+
+                <p:outputLabel value="ID (login):" for="acId" />
+                <p:inputText id="acId" value="#{adminHomeBean.newStudentsIdSTUDENTS}"  required="true"/>
+
+                <p:outputLabel value="Password:" for="acPassword" />
+                <p:inputText id="acPassword" value="#{adminHomeBean.newStudentsPassword}"  required="true"/>
+
+                <p:outputLabel value="Initials:" for="acInitials" />
+                <p:inputText id="acInitials" value="#{adminHomeBean.newStudentsInitials}" />
+
+                <p:outputLabel value="e-mail:" for="acEmail" />
+                <p:inputText id="acEmail" value="#{adminHomeBean.newStudentsEmail}" />
+                
+                <p:outputLabel value="Year of group:" for="acYear" />
+                <p:inputText id="acYear" value="#{adminHomeBean.newStudentsGroupYear}"  required="true"/>
+
+                <p:outputLabel value="Number of group:" for="acNumber" />
+                <p:inputText id="acNumber" value="#{adminHomeBean.newStudentsGroupNumber}"  required="true"/>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Add student" update="growlAdmin" action="#{adminHomeBean.createStudent()}" />
+
+        </h:form>
+ 
+    </p:panel>
+        
+        
+        <p:panel id="deleteStudent" header="Delete Student" toggleable="true" collapsed="true" closable="false" toggleSpeed="500" widgetVar="panel2" style="margin-bottom:20px">
+  
+         <h:form>
+            <p:growl id="growlAdmin" showDetail="true" sticky="false" life="5000"/>
+
+            <h:panelGrid columns="2" cellpadding="5" >
+
+                <p:outputLabel value="ID (login):" for="acId" />
+                <p:inputText id="acId" value="#{adminHomeBean.deleteStudentsId}"  required="true"/>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Delete student" update="growlAdmin" action="#{adminHomeBean.deleteStudent()}" />
+
+        </h:form>
+ 
+    </p:panel>
+        
+        <p:panel id="deleteClass" header="Delete Class" toggleable="true" collapsed="true" closable="false" toggleSpeed="500" widgetVar="panel3" style="margin-bottom:20px">
+  
+         <h:form>
+            <p:growl id="growlAdmin" showDetail="true" sticky="false" life="5000"/>
+
+            <h:panelGrid columns="2" cellpadding="5" >
+
+                <p:outputLabel value="Group year:" for="acYear" />
+                <p:inputText id="acYear" value="#{adminHomeBean.deleteClassYear}"  required="true"/>
+
+                <p:outputLabel value="Group number:" for="acNumber" />
+                <p:inputText id="acNumber" value="#{adminHomeBean.deleteClassNumber}"  required="true"/>
+
+                <p:outputLabel value="Weekday:" for="acWeekday" />
+                <p:selectOneMenu id="acWeekday" value="#{adminHomeBean.deleteClassWeekday}"  required="true">
+                    <f:selectItem itemLabel="monday" itemValue="monday" />
+                    <f:selectItem itemLabel="tuesday" itemValue="tuesday" />
+                    <f:selectItem itemLabel="wednesday" itemValue="wednesday" />
+                    <f:selectItem itemLabel="thursday" itemValue="thursday" />
+                    <f:selectItem itemLabel="friday" itemValue="friday" />
+                    <f:selectItem itemLabel="saturday" itemValue="saturday" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Time of class:" for="acTime" />
+                <p:inputText id="acTime" value="#{adminHomeBean.deleteClassTime}"  required="true"/>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Delete class" update="growlAdmin" action="#{adminHomeBean.deleteClass()}" />
+
+        </h:form>
+ 
+    </p:panel>
+        
+        
+    </h:body>
+</html>
+

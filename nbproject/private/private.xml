@@ -6,10 +6,9 @@
             <file>file:/home/osboxes/NetBeansProjects/TimetableProject/web/login.xhtml</file>
             <file>file:/home/osboxes/NetBeansProjects/TimetableProject/web/home.xhtml</file>
             <file>file:/home/osboxes/NetBeansProjects/TimetableProject/src/java/bean/HomeBean.java</file>
+            <file>file:/home/osboxes/NetBeansProjects/TimetableProject/src/java/bean/AdminHomeBean.java</file>
             <file>file:/home/osboxes/NetBeansProjects/TimetableProject/src/java/dao/StudentDAO.java</file>
-            <file>file:/home/osboxes/NetBeansProjects/TimetableProject/web/WEB-INF/web.xml</file>
-            <file>file:/home/osboxes/NetBeansProjects/TimetableProject/src/java/entity/Students.java</file>
-            <file>file:/home/osboxes/NetBeansProjects/TimetableProject/src/java/bean/LoginBean.java</file>
+            <file>file:/home/osboxes/NetBeansProjects/TimetableProject/web/adminHome.xhtml</file>
         </group>
     </open-files>
 </project-private>

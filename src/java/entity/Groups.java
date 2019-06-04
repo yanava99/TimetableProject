@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Groups.findByIdGROUPS", query = "SELECT g FROM Groups g WHERE g.idGROUPS = :idGROUPS")
     , @NamedQuery(name = "Groups.findByYearInGroups", query = "SELECT g FROM Groups g WHERE g.yearInGroups = :yearInGroups")
     , @NamedQuery(name = "Groups.findByNumber", query = "SELECT g FROM Groups g WHERE g.number = :number")
-    , @NamedQuery(name = "Groups.findBySpeciality", query = "SELECT g FROM Groups g WHERE g.speciality = :speciality")})
+    , @NamedQuery(name = "Groups.findBySpeciality", query = "SELECT g FROM Groups g WHERE g.speciality = :speciality")
+    , @NamedQuery(name = "Groups.findByYearAndNumber", query = "SELECT g FROM Groups g WHERE g.yearInGroups = :yearInGroups AND g.number = :number")})
 public class Groups implements Serializable {
 
     private static final long serialVersionUID = 1L;
